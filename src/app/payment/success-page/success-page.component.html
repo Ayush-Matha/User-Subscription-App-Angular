@@ -1,11 +1,9 @@
-<div class="mdiv">
+<div [class.blurred]="showAlert" class="mdiv">
     <div class="insideMdiv">
 
         <div class="d-flex justify-content-center">
             <div class="card p-4">
-                
-                <h1 class="cg text-center">Payment Successfull</h1><br><br>
-
+                <h1 class="cg text-center">Payment Successful</h1><br><br>
                 <h3>Congratulations!</h3>
                 <p>You are now active on this pack. Payment successful!</p>
                 <div class="details">
@@ -14,9 +12,15 @@
                     <div class="item"><strong>Email:</strong> pra************000gmail.com</div>
                 </div>
                 <br>
-                <button class="btn btn-outline-secondary" routerLink="/profile"> Profile</button>
+                <button class="btn btn-outline-secondary" routerLink="/profile">Profile</button>
             </div>
         </div>
-
     </div>
+</div>
+
+<!-- Bootstrap Alert -->
+<div *ngIf="showAlert" class="alert alert-success text-center " role="alert" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;">
+   <h3> Payment Successful!</h3>
+    <br>
+    Thank you for your payment. Your payment was successful. You will see with more details in profile page...
 </div>

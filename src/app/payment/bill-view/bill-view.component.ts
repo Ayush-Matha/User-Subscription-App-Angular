@@ -3,7 +3,7 @@
   import { isPlatformBrowser } from '@angular/common';
   import { Inject, PLATFORM_ID } from '@angular/core';
   import { DataStoreServiceService } from '../../Services/data-store-service.service';
-  import { ActivatedRoute } from '@angular/router';
+  import { ActivatedRoute, Router } from '@angular/router';
 
 
   @Component({
@@ -29,13 +29,15 @@
       constructor(
         private api:DataStoreServiceService,
         @Inject(PLATFORM_ID) private platformId: Object,
-        private router:ActivatedRoute
+        private router:ActivatedRoute,
+        private rutr:Router
       ){}
 
       ngOnInit()
       {
         this.getUserData();
         this.getPlanData();
+
       }
 
       checkOtp(){
@@ -66,6 +68,8 @@
         this.api.makeTransaction(this.transactionData).subscribe((res:any)=>{
           console.log(res.status);
         });
+
+        this.rutr.navigate(['/success_page'])
       }
 
       getUserData()
@@ -79,6 +83,11 @@
       {
         this.api.currentData.subscribe(
           (data) => {
+            if(!data){
+              alert("You are Logged Out!!")
+              
+              this.rutr.navigate(['/login'])
+            }
             this.planDataForBill = data;
             this.planName = this.planDataForBill.name;
             this.billValidity = this.planDataForBill.validity;
@@ -86,6 +95,7 @@
           }  
         );
         console.log(this.planDataForBill);
+        
       }
 
       getTotal()
@@ -96,5 +106,7 @@
         }
           return (this.planDataForBill.amount.value * 1);
       }
+
+    
   }
 

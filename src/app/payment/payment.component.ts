@@ -83,12 +83,16 @@ export class PaymentComponent {
 
   paymentByUPI() {
     console.log(this.upiForm.value);
+    this.upiForm.value.validity=this.selectedPlanValidity;
+    this.sendData(this.upiForm.value);
   }
 
       
 
   paymentByBankTransfer() {
     console.log(this.bankTransferForm.value);
+    this.bankTransferForm.value.validity=this.selectedPlanValidity;
+    this.sendData(this.bankTransferForm.value);
   }
 
    
@@ -108,16 +112,7 @@ export class PaymentComponent {
 
   sendData(paymentDetails:any)
   {
-    // const jsonObject = {
-    //   "plan_id": this.id,
-    //   "name": this.planName,
-    //   "amount": (this.selectedPlanValidity == 'monthly')?{"value" : this.monthlyPrise}:{"value" : this.yearlyPrice},
-    //   "validity": (this.selectedPlanValidity == 'monthly')?"monthly":"yearly",
-    //   "payment_type": this.selectOption,
-    //   "payment_option_details" : {}
-    // };
-    // this.dataStoreService.updateData(jsonObject);
-    // this.route.navigate(['/bill']);
+  
     const jsonObject = {
       "plan_id": this.id,
       "name": this.planName,
@@ -126,6 +121,7 @@ export class PaymentComponent {
       "payment_type": this.selectedOption,
       "payment_option_details" : paymentDetails
     };
+
     this.dataStoreService.updateData(jsonObject);
     this.route.navigate(['/bill']);
   }
@@ -140,21 +136,7 @@ export class PaymentComponent {
     {
       return (this.yearlyPrice*12);
     }
-    // if (!this.amountData) {
-    //   console.error("Amount is undefined or null in planData");
-    //   return 0;
-    // }
-
-    // try {
-
-    //   return this.selectedPlanValidity === 'monthly'
-    //     ? this.monthlyPrise || 0
-    //     : (this.yearlyPrice || 0) * 12;
-
-    // } catch (error) {
-    //   console.error("Error parsing amount:", error);
-    //   return 0;
-    // }
+   
   }
   
 }
