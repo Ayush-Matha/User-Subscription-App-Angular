@@ -1,0 +1,112 @@
+.mdiv {
+     min-height: 95vh;
+     background-color: rgb(253, 215, 215);
+    overflow: scroll; 
+    -ms-overflow-style: none; /* Internet Explorer 10+ */ 
+    scrollbar-width: none; /* Firefox */ 
+} 
+
+
+.mdiv::-webkit-scrollbar 
+    { 
+        display: none; /* Safari and Chrome */ 
+    }
+
+
+.bill{
+    margin: auto;
+    padding: auto;
+    margin-top: 4rem;
+}
+
+/* //////// Left  */
+.leftDiv{
+    height: auto;
+    /* width: 50%; */
+    float: right;
+    margin: 1rem;
+    margin-top: 2rem;
+    padding:1rem;
+   
+    background-color: rgb(241, 241, 241);
+}
+.btnDiv{
+    margin-top: 2rem;
+}
+
+
+/* ///////// Right */
+
+.bill{
+    min-height: 40rem;
+    width: 60rem;
+    border: 1px solid;
+    background-image: linear-gradient(to top, #c8dfec 0%, #dde2e5 50%, #abd0e5 100%);
+    padding: 1rem;
+    padding-top:2rem ;
+}
+
+/* .bill {
+    margin: auto;
+    margin-top: 4rem;
+ 
+  
+   
+    max-width: 100%;
+  } */
+
+
+
+
+.rightDiv{
+    height: auto;
+    /* width: 50%; */
+    float: right;
+    margin: 1rem;
+    margin-top: 2rem;
+    padding:1rem;
+    background-color: rgb(241, 241, 241);
+}
+.rr{
+    margin-bottom: 0.7rem;
+}
+
+.placeOrderBtn{
+    height: 3rem;
+    margin-top: 1rem;
+}
+
+.para {
+    font-size: medium;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+  
+  
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+
+/* //////////////////new */
+
+
+/* .leftDiv, .rightDiv {
+  background-color: rgb(241, 241, 241);
+  margin: 1rem 0;
+  padding: 1rem;
+} */
+
+@media screen and (max-width: 750px) {
+    .leftDiv, .rightDiv {
+      width: 100%;
+      margin: 2rem;
+
+    }
+  }
+  

@@ -1,0 +1,32 @@
+
+<div class="mdiv ">
+    <div class="insideMdiv color-change-2x" >
+        <div class=" d-flex flex-wrap justify-content-evenly  aboveBOX">
+           
+            <div class="p-2 bd-highlight col-12 col-md-6 col-lg-4  inBOX" *ngFor="let plan of plans">
+                <div class="d-flex flex-column imgDiv">
+                    <h3 style="color:yellow" >
+                        <!-- <i class="bi bi-star-fill"></i> -->
+            
+                        <i class="bi bi-suit-heart-fill"></i>
+                    </h3>
+                </div>
+                <h3 class="h22">{{ plan.name }}</h3>
+                <h2 class="h22 h66"> ₹ {{ getMonthlyAmount(plan.amount)}}</h2> 
+                <hr> 
+                
+                <div class="bullets"  style="color: rgb(77, 79, 79);" *ngFor="let item of plan.description" >
+                    
+                    <h6 class="bull"><i class="bi bi-dot"></i>  {{item}}</h6>
+                    
+                </div>
+                
+                <button class="btn btn-outline-secondary getBtn" style="margin-bottom:1rem ;" (click)="selectedPlan(plan.plan_id)">Get Plan</button>
+            
+            </div>
+
+        </div>
+
+
+        </div>
+    </div>

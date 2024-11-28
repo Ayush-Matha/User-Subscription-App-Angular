@@ -1,0 +1,25 @@
+
+<div class="mdiv ">
+    <div class="insideMdiv color-change-2x" >
+        <div class="text-center ccc">
+            <h5>Ready to level up?</h5>
+            <h2>WE HAVE BEST PLANS FOR YOU &</h2>
+            <h2>YOUR NEED</h2>
+        </div>
+       <div class="toggleDiv d-flex justify-content-center">
+             <div class="outerDiv">
+   
+                    <div class="custom-toggle-container">
+                        <span [class.focused]="!isToggled">Annual Plan</span>
+                        <div class="custom-toggle" (click)="toggle()">
+                        <div class="toggle-circle" [class.toggled]="isToggled"></div>
+                        </div>
+                        <span [class.focused]="isToggled">Monthly Plan</span>
+                    </div>
+            </div>
+       </div>
+       <app-monthly-plan *ngIf="isToggled" class="slide-in-blurred-top"></app-monthly-plan>
+        <app-annual-plan *ngIf="!isToggled" class="slide-in-blurred-top"></app-annual-plan>
+
+        </div>
+    </div>

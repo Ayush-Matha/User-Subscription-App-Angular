@@ -1,0 +1,123 @@
+<div class="mdiv ">
+    <div class="boxx color-animation" style="z-index: +1;" >
+      <div class="loginDiv" *ngIf="loginVar" >
+                <h3 align="center">Login</h3>
+                
+                <form [formGroup]="loginForm" >
+                    <div class="form-group col-md-12 ">
+                    <label for="inputName4 ">ID:<span class="text-danger" >*</span></label>
+                    <input type="text" class="form-control" id="inputName4" formControlName="email" placeholder="Enter Id"  required>
+                    
+                    <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-danger">
+                        ID is required.
+                    </div>
+                    </div>
+        
+                
+                    
+                    <div class="form-group col-md-12  mt-4">
+                    <label for="password">Password: <span class="text-danger">*</span></label>
+                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter Password"  title="Password"  required>
+                    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
+                        Password  required.
+                    </div>
+                    </div>
+                    
+                    <button  type="submit"  class="btn btn-success btn-block mb-4 w-100 mt-4" (click)="tryLogin()"  [disabled]="loginForm.invalid">Login</button>
+                    
+                    <!-- Register buttons -->
+                    
+                    </form>
+                    <button  class="btn btn-outline-secondary w-100" style="color: white;" (click)="toggleLoginVar()">Register</button>
+        </div>
+
+
+        <!-- ///////////////////////////////////////// -->
+
+
+                <div class="registerDiv" *ngIf="!loginVar" >
+
+                    <h3>Register</h3>
+                    <br>
+                    <form [formGroup]="registerForm" >
+                    <div class="coolinput col-md-12">
+                        <label for="name">Full Name: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="name" placeholder="Enter Full Name.." name="name" required>
+                        <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger">
+                            Name is required.
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group col-md-12  mt-3">
+                        <label for="email ">Email:<span class="text-danger" >*</span></label>
+                        <input type="email" class="form-control" id="inputName4" formControlName="email" placeholder="i.e. user@gmail.com"   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger">
+                        Email is required.
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12 mt-3">
+                        <label for="mobile">Mobile:<span class="text-danger">*</span></label>
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="inputName4"
+                          formControlName="mobile"
+                          placeholder="10 digit only"
+                          pattern="^[6-9]\d{9}$"
+                          required
+                        />
+                        
+                        <!-- Check if the mobile field is touched and invalid -->
+                        <div *ngIf="registerForm.get('mobile')?.touched && registerForm.get('mobile')?.invalid" class="text-danger">
+                          <!-- Check if the mobile field is required -->
+                          <div *ngIf="registerForm.get('mobile')?.errors?.['required']">
+                            Mobile is required.
+                          </div>
+                          <!-- Check if the mobile field has a valid pattern -->
+                          <div *ngIf="registerForm.get('mobile')?.errors?.['pattern']">
+                            Please enter a valid 10-digit mobile number starting with 6-9.
+                          </div>
+                        </div>
+                      </div>
+                      
+                    
+                    
+                    <div class="form-group col-md-12  mt-3">
+                        <label for="password">Password: <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter Password"  title="Password" required>
+                        <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger">
+                            <div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</div>
+                            <div *ngIf="registerForm.get('password')?.errors?.['pattern']">Password must contain at least one number, one alphabet, and one special character</div>
+                          </div>
+                    </div>
+                    
+
+                    <div class="coolinput col mt-3">
+                        <label for="password_confirmation" class="text"> Confirm Password:</label>
+                        <input type="password" class="form-control input" formControlName="password_confirmation" placeholder=" " name="password_confirmation">
+                        <div *ngIf="registerForm.get('password_confirmation')?.touched && registerForm.get('password_confirmation')?.invalid" class="text-danger">
+                            <div *ngIf="registerForm.get('password_confirmation')?.errors?.['required']">Confirm Password is required</div>
+                          </div>
+                        <div *ngIf="registerForm.hasError('passwordMismatch')" class="text-danger">
+                        Passwords do not match
+                      </div>
+                    </div>
+                    
+                        <button  type="submit"  class="btn btn-success btn-block mb-4 w-100 mt-4" (click)="tryRegister()"  [disabled]="registerForm.invalid">Register</button>
+                    
+                        <!-- Register buttons -->
+
+                    </form>
+                    <button  class="btn btn-outline-secondary w-100" (click)="toggleLoginVar()">Alredy have account <b>Log In</b></button>
+                    
+                </div>
+    </div>
+    <svg version="1.1" id="Wave" x="0px" y="0px" viewBox="0 0 1000 200" style="enable-background: new 0 0 1000 200" xml:space="preserve"> 
+      <style type="text/css">
+      .st0 {  fill: #ffacac;}
+      </style> 
+  <path id="myClip" class="st0" d="M0,100c0,0,2250,50,500,0s500,0,500,0v100H0V100z"></path> </svg>
+
+</div>

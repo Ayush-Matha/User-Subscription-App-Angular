@@ -1,0 +1,186 @@
+<div class="mdiv">
+    <div class="insideMdiv">
+        
+            <div class="topDiv">
+                <div class=" p-5 pb-1">
+                <button class="btn btn-sm btn-outline-secondary " (click)="clickBack()"> <i class="bi bi-arrow-left"></i> Back</button>
+                </div>
+                <div class="">
+                </div>
+            </div>
+
+
+        <div class="bottomDiv row ">
+
+            <div class="leftDiv col">
+                <h3>{{planName}}</h3>
+                
+                <br>
+                <div class="">
+                        <div class="option-box1" [class.selected]="selectedPlanValidity === 'monthly'" (click)="selectPlanOption('monthly')">
+                            <span>Pay Monthly </span> &nbsp;&nbsp;<sub> {{monthlyPrise}}/per Month</sub>
+                            
+                        </div>
+                        <br>
+                        <div class="option-box1" [class.selected]="selectedPlanValidity === 'yearly'" (click)="selectPlanOption('yearly')">
+                             <span>Pay yearly</span> &nbsp;&nbsp; <sub> {{yearlyPrice}}/per Month</sub>
+                        </div>
+                </div>
+            <hr>
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <h6>Total:</h6>
+                    </div>
+                    <div class="">
+                        <h6> {{calculateTotal() | currency : 'INR'}}</h6>
+                    </div>
+                </div>
+
+    </div>
+
+            <div class="rightDiv col">
+                <h6></h6>
+                <h3>Upgrade to {{planName}} </h3>
+                <p>Do more with unlimited blocks, files, automation and Integretion.</p>
+             
+                
+                <div class="form-group">
+                    <label>Select Payment Method:</label>
+                    <div class="">
+                        <div class="payment-options ">
+                            <div class="option-box  " [class.selected]="selectedOption === 'Credit Card'" (click)="selectOption('Credit Card')">
+                                <i class="bi bi-credit-card"></i>
+                                <span>Card</span>
+                            </div>
+                            <div class="option-box " [class.selected]="selectedOption === 'UPI'" (click)="selectOption('UPI')">
+                                <i class="bi bi-phone"></i>
+                                <span>UPI</span>
+                            </div>
+                            <div class="option-box " [class.selected]="selectedOption === 'Bank Transfer'" (click)="selectOption('Bank Transfer')">
+                                <i class="bi bi-bank"></i>
+                                <span>Bank Transfer</span>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <br>
+
+
+                  <form action="" [formGroup]="cardForm" (submit)="paymentByCard()">
+
+                    <div class="cardPayment" *ngIf="selectedOption=='Credit Card'" >
+
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" formControlName="name" >
+                        <br>
+                        
+
+                            <div class="col">
+                                <label for="">Card No:</label>
+                                <input type="text"  class="form-control" formControlName="card_no" >
+                            </div>
+
+                            <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="">Expiry:</label>
+                                        <input type="text"  class="form-control" formControlName="expiry">
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="">CVV:</label>
+                                        <input type="text"  class="form-control" formControlName="cvv">
+                                    </div>
+                                </div>
+                            <br>
+                            <div class="row g-3" >
+                                <div class="col-12 col-md ">
+                                    <button class="btn btn-danger btn-lg w-100 cancleBtn" cancleBtn>Cancel</button>
+                                </div>
+                                <div class="col-12 col-md"> 
+                                    <button class="btn btn-success btn-lg w-100 submitBtn" type="submit" >Proceed Payment</button>
+                                </div>
+                            </div>
+ 
+                    </div>
+                </form>
+
+                <form action="" [formGroup]="upiForm" (submit)="paymentByUPI()">
+                    <div class="upiPayment"  *ngIf="selectedOption=='UPI'" >
+                   
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" formControlName="name" >
+                        <br>
+                        
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">UPI id:</label>
+                                    <input type="text" class="form-control" formControlName="upi_id">
+                                </div>
+                                <div class="col">
+                                    <label for="">Gmail:</label>
+                                    <input type="text" class="form-control" formControlName="gmail">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row g-3" >
+                                <div class="col-12 col-md ">
+                                    <button class="btn btn-danger btn-lg w-100 cancleBtn" cancleBtn>Cancel</button>
+                                </div>
+                                <div class="col-12 col-md"> 
+                                    <button class="btn btn-success btn-lg w-100 submitBtn" (click)="paymentByUPI()">Proceed Payment</button>
+                                </div>
+                            </div>
+                    </div>
+                </form>
+
+                <form action="" [formGroup]="bankTransferForm" (submit)="paymentByBankTransfer()">
+                    <div class="bankTransfer" *ngIf="selectedOption=='Bank Transfer'">
+
+
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Bank Name:</label>
+                                <input type="text" class="form-control" formControlName="account_no">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                                <div class="col">
+                                    <label for="">Account no:</label>
+                                    <input type="text" class="form-control"  formControlName="bank_name">
+                                </div>
+                                <div class="col">
+                                    <label for="">IFSC:</label>
+                                    <input type="text" class="form-control"  formControlName="ifsc">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col">
+                                <label for="">Branch Name:</label>
+                                <input type="text" class="form-control" formControlName="branch">
+                            </div>
+                            <br>
+                            <div class="row g-3" >
+                                <div class="col-12 col-md ">
+                                    <button class="btn btn-danger btn-lg w-100 cancleBtn" cancleBtn>Cancel</button>
+                                </div>
+                                <div class="col-12 col-md"> 
+                                    <button class="btn btn-success btn-lg w-100 submitBtn" (click)="paymentByBankTransfer()">Proceed Payment</button>
+                                </div>
+                            </div>
+                    </div>
+                </form>
+
+
+                
+
+            </div>
+         
+
+        </div>
+
+ </div>
+
+</div>

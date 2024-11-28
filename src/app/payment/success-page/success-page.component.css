@@ -1,0 +1,16 @@
+.mdiv
+{
+    height: 95vh;
+    width: 100vw;
+   background-image: linear-gradient(120deg, #fdd9ad 0%, #e8abf8 100%);
+    
+}
+.card{
+    min-height: 20rem;
+    width:40rem;
+    margin-top: 10rem;
+
+}
+.cg{
+    color: rgb(20, 205, 42);
+}

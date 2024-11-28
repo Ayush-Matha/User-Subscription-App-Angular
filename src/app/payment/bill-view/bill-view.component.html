@@ -1,0 +1,68 @@
+<div class="mdiv">
+  <div class="insideMdiv d-flex justify-content-center">
+    <div class="bill">
+      <div class="text-center ccc">
+        <h5>Let's make sure everything is in order</h5>
+        <h2>UPGRADE TO {{planName}}</h2>
+      </div>
+
+      <div class="row " >
+        <div class="col leftDiv">
+          <div class="user">
+            <h4>User Info:</h4>
+            <hr>
+            <div class="d-flex justify-content-between mb-2">
+              <div><h6>Name:</h6></div>
+              <div><h6>{{userData?.name}}</h6></div>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <div><h6>Mobile:</h6></div>
+              <div><h6>{{userData?.mobile}}</h6></div>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <div><h6>Email:</h6></div>
+              <div><h6>{{userData?.email}}</h6></div>
+            </div>
+            <hr>
+            <div>
+              <p>Enter OTP: <small>(sent to Registered Email account)</small><small style="color: red;">*</small></p>
+              <input type="text" class="form-control" name="otp" [(ngModel)]="otp" required>
+              <div *ngIf="otp == undefined || otp === ''" style="color: red;">Enter OTP</div>
+              <div class="btnDiv">
+                <button class="btn btn-primary" (click)="checkOtp()" [disabled]="!btnConfir">Confirm Otp</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col rightDiv">
+          <div class="rr d-flex justify-content-between">
+            <div><h5>Billing Cycle:</h5></div>
+            <div><h5>{{ billValidity | titlecase }}</h5></div>
+          </div>
+          <div class="rr d-flex justify-content-between">
+            <div><h5>Subtotal:</h5></div>
+            <div><h5>{{ billAmount | currency : 'INR'}}</h5></div>
+          </div>
+          <div class="rr d-flex justify-content-between">
+            <div><h5>Tax</h5></div>
+            <div><h5>0</h5></div>
+          </div>
+          <div class="rr d-flex justify-content-between">
+            <div><h3>Total</h3></div>
+            <div><h3>{{getTotal() | currency : 'INR'}}</h3></div>
+          </div>
+          <button class="btn btn-primary w-100 placeOrderBtn" [disabled]="btnConfir" (click)="confirmPayment()"> Place Order</button>
+          <div class="para">
+            <p>
+              <span class="dot"></span> If Payment is done then not applicable for refund.<br>
+              <span class="dot"></span> Please ensure your payment is completed within 5 minutes.<br>
+              <span class="dot"></span> For any payment-related queries, contact us at supportrjca.com or call (+61)404123123.<br>
+              <span class="dot"></span> Ensure your transaction details are securely entered to protect your payment information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
