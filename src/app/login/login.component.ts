@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-
 import { Router } from '@angular/router';
 import { response } from 'express';
 import { error } from 'console';
 import { DataStoreServiceService } from '../Services/data-store-service.service';
-
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 @Component({
@@ -69,6 +67,7 @@ tryLogin() {
           localStorage.setItem('refreshToken', this.loginOp.data.refresh_token);
           // const decodedToken: any = jwtDecode(this.loginOp.access_token);
           // alert(decodedToken.email);
+          this.dataStore.updateLoginStatus(true);
         }
         console.log(this.loginOp);
         this.router.navigateByUrl('/plan_view');

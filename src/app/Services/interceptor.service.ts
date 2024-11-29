@@ -45,6 +45,7 @@ export class InterceptorService implements HttpInterceptor {
 
   private handle401Error(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!this.isBrowser()) {
+      console.warn('401 handling skipped in SSR environment.');
       return throwError(() => new Error('Token refresh not supported in SSR environment.'));
     }
   
@@ -63,8 +64,9 @@ export class InterceptorService implements HttpInterceptor {
           }));
         }),
         catchError((err) => {
+          const refreshToken = localStorage.getItem('refreshToken');
           this.isRefreshing = false;
-          this.authService.logout();
+          this.authService.logout(refreshToken);
           return throwError(err);
         })
       );
